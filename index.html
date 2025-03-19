@@ -1,0 +1,63 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Used Car Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Used Car Price Prediction</h1>
+        <form action="http://127.0.0.1:5000//predict" method="post">
+            <input type="text" name="Kilometers_Driven" placeholder="Kilometers Driven" required>
+            <input type="text" name="Mileage" placeholder="Mileage (kmpl)" required>
+            <input type="text" name="Engine" placeholder="Engine (CC)" required>
+            <input type="text" name="Power" placeholder="Power (bhp)" required>
+            <input type="text" name="Seats" placeholder="Seats" required>
+
+            <label>Fuel Type:</label>
+            <select name="Fuel_Type">
+                <option value="Diesel">Diesel</option>
+                <option value="Petrol">Petrol</option>
+                <option value="CNG">CNG</option>
+            </select>
+
+            <label>Transmission:</label>
+            <select name="Transmission">
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+            </select>
+
+            <label>Owner Type:</label>
+            <select name="Owner_Type">
+                <option value="First">First</option>
+                <option value="Second">Second</option>
+            </select>
+
+            <label>Location:</label>
+            <select name="Location">
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+            </select>
+
+            <button type="submit">Predict Price</button>
+        </form>
+        
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    </div>
+    {% if prediction_text %}
+        <div class="result">
+            <p>Estimated Car Price: <strong>{{ prediction_text }}</strong></p>
+        </div>
+        {% endif %}
+</body>
+</html>
